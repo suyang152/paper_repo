@@ -1,0 +1,107 @@
+{
+    "name": "alsciende/thronesdb",
+    "description": "A Game of Thrones LCG deckbuilder",
+    "license": "proprietary",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "": "src/",
+            "SymfonyStandard\\": "app/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "^2.7",
+        "symfony/assetic-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~3.0,>=3.0.12",
+        "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "friendsofsymfony/user-bundle": "2.0.*@dev",
+        "doctrine/dbal": "^2.5",
+        "doctrine/orm": "^2.5",
+        "doctrine/doctrine-bundle": "^1.5",
+        "liuggio/excelbundle": "^2.0",
+        "friendsofsymfony/jsrouting-bundle": "^1.5",
+        "twig/extensions": "^1.2",
+        "ezyang/htmlpurifier": "^4.6",
+        "leafo/scssphp": "^0.2.0",
+        "patchwork/jsqueeze": "~1.0",
+        "friendsofsymfony/oauth-server-bundle": "^1.4",
+        "phpunit/phpunit": "4.8.*",
+        "nelmio/api-doc-bundle": "^2.9",
+        "erusev/parsedown": "^1.6",
+        "stof/doctrine-extensions-bundle": "^1.2",
+        "willdurand/js-translation-bundle": "^2.5",
+        "jms/i18n-routing-bundle": "^2.0",
+        "lstrojny/functional-php": "^1.2",
+        "jms/translation-bundle": "^1.3",
+        "jms/di-extra-bundle": "^1.8",
+        "php-http/httplug-bundle": "^1.3",
+        "happyr/translation-bundle": "^0.4.2",
+        "php-http/curl-client": "^1.6",
+        "doctrine/doctrine-migrations-bundle": "^1.2"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        ],
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "php app/console happyr:translation:download",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "php app/console bazinga:js-translation:dump",
+            "php app/console assetic:dump",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "php app/console happyr:translation:download",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "php app/console bazinga:js-translation:dump",
+            "php app/console assetic:dump",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "symfony-assets-install": "relative",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "website_name": "WEBSITE_NAME",
+                "database_url": "DATABASE_URL",
+                "website_url": "WEBSITE_URL",
+                "game_name": "GAME_NAME",
+                "publisher_name": "PUBLISHER_NAME",
+                "mailer_transport": "MAILER_TRANSPORT",
+                "mailer_host": "MAILER_HOST",
+                "mailer_port": "MAILER_PORT",
+                "mailer_user": "MAILER_USER",
+                "mailer_password": "MAILER_PASSWORD",
+                "aws_access_key_id": "AWS_ACCESS_KEY_ID",
+                "aws_secret_access_key": "AWS_SECRET_ACCESS_KEY",
+                "s3_bucket": "S3_BUCKET",
+                "google_analytics_tracking_code": "GOOGLE_ANALYTICS_TRACKING_CODE",
+                "google_adsense_client": "GOOGLE_ADSENSE_CLIENT",
+                "google_adsense_slot": "GOOGLE_ADSENSE_SLOT"
+            }
+        }
+    }
+}
